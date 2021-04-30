@@ -6,19 +6,26 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 export function Home() {
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container-fluid content">
+			<div className="row border-bottom-dark">
+				<div className="col-4 tic-box"> </div>
+				<div className="col-4 border-left border-right border-dark tic-box"></div>
+				<div className="col-4 tic-box"> </div>
+			</div>
+			<div className="row">
+				<div className="col-4 border-top border-bottom border-dark tic-box">
+					{" "}
+				</div>
+				<div className="col-4 border border-dark tic-box"> </div>
+				<div className="col-4 tic-box border-top border-bottom border-dark">
+					{" "}
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-4 tic-box"> </div>
+				<div className="col-4 border-left border-right  border-dark tic-box"></div>
+				<div className="col-4 tic-box"> </div>
+			</div>
 		</div>
 	);
 }
