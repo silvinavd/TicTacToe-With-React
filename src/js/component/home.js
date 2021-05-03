@@ -5,35 +5,49 @@ import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 export function Home(props) {
-	const [count, setCount] = useState(0);
+	const [game, setGame] = useState([
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" "
+	]);
+
+	const [player, setPlayer] = useState("X");
+
+	const marcar = i => {
+		let cambioTurno = false;
+		let newGame = game.map((e, index) => {
+			if (i == index && e == " ") {
+				cambioTurno = true;
+				return player;
+			} else return e;
+		});
+		if (cambioTurno) {
+			player === "X" ? setPlayer("O") : setPlayer("X");
+		}
+
+		setGame(newGame);
+	};
 	return (
 		<div className="container-fluid content">
-			<div className="row border-bottom-dark">
-				<div className="col-4 tic-box">
-					{" "}
-					<p>{count}</p>
-					<button
-						onClick={() => setCount("X")}
-						className="btn btn-primary fixed-top">
-						X player
-					</button>
-				</div>
-				<div className="col-4 border-left border-right border-dark tic-box"></div>
-				<div className="col-4 tic-box"> </div>
-			</div>
 			<div className="row">
-				<div className="col-4 border-top border-bottom border-dark tic-box">
-					{" "}
-				</div>
-				<div className="col-4 border border-dark tic-box"> </div>
-				<div className="col-4 tic-box border-top border-bottom border-dark">
-					{" "}
-				</div>
-			</div>
-			<div className="row">
-				<div className="col-4 tic-box"> </div>
-				<div className="col-4 border-left border-right  border-dark tic-box"></div>
-				<div className="col-4 tic-box"> </div>
+				{game.map((e, i) => {
+					return (
+						<div
+							key={i}
+							className="col-4 tic-box border"
+							onClick={() => {
+								marcar(i);
+							}}>
+							<p>{e}</p>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
