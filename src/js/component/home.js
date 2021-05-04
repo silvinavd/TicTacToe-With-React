@@ -46,7 +46,7 @@ export function Home(props) {
 				setWinner(game[i]);
 			}
 		}
-		for (let i = 0; i < game.length; i = i + 2) {
+		for (let i = 2; i < game.length; i = i + 2) {
 			if (
 				game[i] != " " &&
 				game[i] == game[i + 2] &&
@@ -81,6 +81,8 @@ export function Home(props) {
 	};
 	return (
 		<div className="container-fluid content">
+			<h1>Tic Tac Toe</h1>
+			<h2>Lets play!</h2>
 			<div className="row">
 				{game.map((e, i) => {
 					return (
