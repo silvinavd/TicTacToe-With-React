@@ -27,8 +27,8 @@ export function Home(props) {
 
 	useEffect(() => {
 		validarGanador();
-		if (winner != "") {
-			alert("Winner is: " + winner);
+		if (winner == "X") {
+			alert("Winner is: " + playerone);
 		}
 	});
 
@@ -36,11 +36,10 @@ export function Home(props) {
 
 	const names = e => {
 		e.preventDefault();
-		setPlayerlist([...playerlist, playerone, playertwo]);
+		setPlayerlist([playerone, playertwo]);
+		setPlayerone("");
 		setPlayerone("");
 		setPlayertwo("");
-	};
-
 	function validarGanador() {
 		for (let i = 0; i < game.length; i = i + 3) {
 			if (
