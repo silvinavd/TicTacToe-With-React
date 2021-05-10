@@ -22,13 +22,14 @@ export function Home(props) {
 	const [winner, setWinner] = useState("");
 	const [playerone, setPlayerone] = useState("");
 	const [playertwo, setPlayertwo] = useState("");
-
 	const [playerlist, setPlayerlist] = useState([]);
 
 	useEffect(() => {
 		validarGanador();
 		if (winner == "X") {
-			alert("Winner is: " + playerone);
+			alert("Winner is: " + playerlist[0]);
+		} else if (winner == "O") {
+			alert("winner is: " + playerlist[1]);
 		}
 	});
 
@@ -37,9 +38,8 @@ export function Home(props) {
 	const names = e => {
 		e.preventDefault();
 		setPlayerlist([playerone, playertwo]);
-		setPlayerone("");
-		setPlayerone("");
-		setPlayertwo("");
+	};
+
 	function validarGanador() {
 		for (let i = 0; i < game.length; i = i + 3) {
 			if (
@@ -93,55 +93,62 @@ export function Home(props) {
 		setGame(newGame);
 	};
 	return (
-		<div className="container-fluid content d-block">
-			<h1>Tic Tac Toe</h1>
-
-			<div className="player">
-				<h4>Choose your weapon</h4>
-				<div className="text-center">
-					<form
-						className="form justify-content-center"
-						onSubmit={names}>
-						<div className="form-group mx-sm-3 mb-2">
-							<i className="fas fa-times"></i>
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Player X name"
-								onChange={e => setPlayerone(e.target.value)}
-								value={playerone}
-							/>
-						</div>
-
-						<div className="form-group mx-sm-3 mb-2">
-							<i className="far fa-circle"></i>
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Player O name"
-								onChange={e => setPlayertwo(e.target.value)}
-								value={playertwo}
-							/>
-						</div>
-						<button type="submit" className="btn btn-success mb-2">
-							Start!
-						</button>
-					</form>
-				</div>
+		<div>
+			<div>
+				<h1 className="text-center">Tic Tac Toe</h1>
 			</div>
-			<div className="row">
-				{game.map((e, i) => {
-					return (
-						<div
-							key={i}
-							className="col-4 tic-box border"
-							onClick={() => {
-								marcar(i);
-							}}>
-							<p>{e}</p>
-						</div>
-					);
-				})}
+			<div className="container d-flex mr-5">
+				<div className="player content">
+					<h4>Choose your weapon</h4>
+					<div className="text-center">
+						<form
+							className="form justify-content-center"
+							onSubmit={names}>
+							<div className="form-group mx-sm-3 mb-2">
+								<i className="fas fa-times"></i>
+								<input
+									type="text"
+									className="form-control"
+									placeholder="Player X name"
+									onChange={e => setPlayerone(e.target.value)}
+									value={playerone}
+								/>
+							</div>
+
+							<div className="form-group mx-sm-3 mb-2">
+								<i className="far fa-circle"></i>
+								<input
+									type="text"
+									className="form-control"
+									placeholder="Player O name"
+									onChange={e => setPlayertwo(e.target.value)}
+									value={playertwo}
+								/>
+							</div>
+							<button
+								type="submit"
+								className="btn btn-success mt-3">
+								Start!
+							</button>
+						</form>
+					</div>
+				</div>
+				<div className="container content justify-content-center">
+					<div className="row">
+						{game.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className="col-4 tic-box border"
+									onClick={() => {
+										marcar(i);
+									}}>
+									<p>{e}</p>
+								</div>
+							);
+						})}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
